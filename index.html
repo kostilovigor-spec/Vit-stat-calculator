@@ -1,0 +1,171 @@
+﻿<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vit — калькулятор закупа</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero__inner">
+        <p class="eyebrow">Vit</p>
+        <h1>Калькулятор закупа</h1>
+        <p class="lead">Ручной ввод базы, затем закуп с тратой опыта. Максимум уровня — 6.</p>
+      </div>
+    </header>
+
+    <div class="layout">
+      <main class="main">
+        <section class="panel" id="stats-panel">
+          <div class="panel__header">
+            <h2>Характеристики</h2>
+            <p class="hint">База — ручной ввод без стоимости. Покупка — уровни выше базы с тратой опыта.</p>
+          </div>
+          <div class="grid-table" data-section="stats">
+            <div class="row row--head">
+              <div class="cell">Характеристика</div>
+              <div class="cell">База</div>
+              <div class="cell">Покупка</div>
+              <div class="cell">Стоимость</div>
+            </div>
+            <div class="row" data-kind="stat" data-current="1">
+              <div class="cell">Самочувствие</div>
+              <div class="cell"><input class="base-input" type="number" min="1" max="6" value="1" /></div>
+              <div class="cell purchase">
+                <button class="step" data-action="dec" type="button">-</button>
+                <span class="current" data-role="current">1</span>
+                <button class="step" data-action="inc" type="button">+</button>
+              </div>
+              <div class="cell cost" data-role="cost">0</div>
+            </div>
+            <div class="row" data-kind="stat" data-current="1">
+              <div class="cell">Внимание</div>
+              <div class="cell"><input class="base-input" type="number" min="1" max="6" value="1" /></div>
+              <div class="cell purchase">
+                <button class="step" data-action="dec" type="button">-</button>
+                <span class="current" data-role="current">1</span>
+                <button class="step" data-action="inc" type="button">+</button>
+              </div>
+              <div class="cell cost" data-role="cost">0</div>
+            </div>
+            <div class="row" data-kind="stat" data-current="1">
+              <div class="cell">Движение</div>
+              <div class="cell"><input class="base-input" type="number" min="1" max="6" value="1" /></div>
+              <div class="cell purchase">
+                <button class="step" data-action="dec" type="button">-</button>
+                <span class="current" data-role="current">1</span>
+                <button class="step" data-action="inc" type="button">+</button>
+              </div>
+              <div class="cell cost" data-role="cost">0</div>
+            </div>
+            <div class="row" data-kind="stat" data-current="1">
+              <div class="cell">Сражение</div>
+              <div class="cell"><input class="base-input" type="number" min="1" max="6" value="1" /></div>
+              <div class="cell purchase">
+                <button class="step" data-action="dec" type="button">-</button>
+                <span class="current" data-role="current">1</span>
+                <button class="step" data-action="inc" type="button">+</button>
+              </div>
+              <div class="cell cost" data-role="cost">0</div>
+            </div>
+            <div class="row" data-kind="stat" data-current="1">
+              <div class="cell">Мышление</div>
+              <div class="cell"><input class="base-input" type="number" min="1" max="6" value="1" /></div>
+              <div class="cell purchase">
+                <button class="step" data-action="dec" type="button">-</button>
+                <span class="current" data-role="current">1</span>
+                <button class="step" data-action="inc" type="button">+</button>
+              </div>
+              <div class="cell cost" data-role="cost">0</div>
+            </div>
+            <div class="row" data-kind="stat" data-current="1">
+              <div class="cell">Общение</div>
+              <div class="cell"><input class="base-input" type="number" min="1" max="6" value="1" /></div>
+              <div class="cell purchase">
+                <button class="step" data-action="dec" type="button">-</button>
+                <span class="current" data-role="current">1</span>
+                <button class="step" data-action="inc" type="button">+</button>
+              </div>
+              <div class="cell cost" data-role="cost">0</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" id="perks-panel">
+          <div class="panel__header">
+            <h2>Черты и способности</h2>
+            <p class="hint">В строке указывайте тип. База — ручной ввод. 0 = отсутствует.</p>
+          </div>
+          <div class="grid-table grid-table--perks" data-section="perks" id="perks-list">
+            <div class="row row--head">
+              <div class="cell">Название</div>
+              <div class="cell">Тип</div>
+              <div class="cell">База</div>
+              <div class="cell">Покупка</div>
+              <div class="cell">Стоимость</div>
+              <div class="cell"> </div>
+            </div>
+          </div>
+          <button class="btn" id="add-perk" type="button">Добавить строку</button>
+        </section>
+      </main>
+
+      <aside class="side">
+        <section class="panel" id="xp-panel">
+          <div class="panel__header">
+            <h2>Уровень и опыт</h2>
+            <p class="hint">Каждый уровень даёт 6 опыта. Стартовые 30 опыта включены.</p>
+          </div>
+          <div class="xp-grid">
+            <label class="field">
+              <span>Уровень</span>
+              <input id="level-input" type="number" min="1" max="99" value="1" />
+            </label>
+            <label class="field">
+              <span>Опыт</span>
+              <input id="xp-input" type="number" min="0" value="36" />
+            </label>
+            <label class="field field--toggle">
+              <span>XP по уровню</span>
+              <input id="xp-sync" type="checkbox" checked />
+            </label>
+            <div class="xp-meta">
+              <div class="chip">Формула: 30 + уровень × 6</div>
+              <button id="reset-btn" class="btn btn--ghost" type="button">Сбросить к 1 уровню</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel totals" id="totals-panel">
+          <div class="panel__header">
+            <h2>Итог по опыту</h2>
+            <p class="hint">Если опыт уходит в минус, подсветим показатель.</p>
+          </div>
+          <div class="totals-grid">
+            <div class="metric">
+              <span class="metric__label">Доступно опыта</span>
+              <span class="metric__value" id="xp-available">36</span>
+            </div>
+            <div class="metric">
+              <span class="metric__label">Потрачено на характеристики</span>
+              <span class="metric__value" id="xp-stats">0</span>
+            </div>
+            <div class="metric">
+              <span class="metric__label">Потрачено на черты и способности</span>
+              <span class="metric__value" id="xp-perks">0</span>
+            </div>
+            <div class="metric metric--highlight" id="xp-remaining-card">
+              <span class="metric__label">Остаток опыта</span>
+              <span class="metric__value" id="xp-remaining">36</span>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
