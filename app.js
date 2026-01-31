@@ -11,6 +11,7 @@ const levelInput = document.getElementById('level-input');
 const xpInput = document.getElementById('xp-input');
 const xpSync = document.getElementById('xp-sync');
 const resetBtn = document.getElementById('reset-btn');
+const resetAllocBtn = document.getElementById('reset-alloc-btn');
 
 const totals = {
   available: document.getElementById('xp-available'),
@@ -239,6 +240,14 @@ function resetAll() {
   updateAll();
 }
 
+function resetAllocated() {
+  document.querySelectorAll('.row[data-kind]').forEach((row) => {
+    const base = getRowBase(row);
+    setRowCurrent(row, base);
+  });
+  updateAll();
+}
+
 levelInput.addEventListener('input', () => {
   syncXPFromLevel();
   updateAll();
@@ -255,6 +264,7 @@ xpSync.addEventListener('change', () => {
 });
 
 resetBtn.addEventListener('click', resetAll);
+resetAllocBtn.addEventListener('click', resetAllocated);
 addPerkBtn.addEventListener('click', () => addRow(perksList, 'perk'));
 
 // Delegated events
